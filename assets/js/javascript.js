@@ -3,6 +3,8 @@ var upperCase = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M'
 var lowerCase = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
 var specialCase = ["+", "-", "&", "|", "!", "(", ")", "{", "}", "[", "]", "^", "~", "*", "?", ":", "'", '"'];
 var numericalNumeral = ["1", "2", "3", "4", "5", "6", "7", "8", "9"]
+var finalPass= [];
+var numChars;
 var specialChose;
 var numericalChose;
 var lowerChose;
@@ -19,7 +21,7 @@ PasswordFinder();
 
 function PasswordFinder() {
     // var numChars = prompt("How many character ")
-    var numChars = prompt("How many characters would you like? Between 8 and 128")
+    numChars = parseInt(prompt("How many characters would you like? Between 8 and 128"));
 
     // check the users input and confirm they put in a number between 8 and 128
     if (numChars < 8 || numChars > 128) {
@@ -28,6 +30,7 @@ function PasswordFinder() {
         return null;
     }
     else if (numChars >= 8 && numChars <= 128) {
+        console.log(numChars);
         userParameters();
         return numChars;
     }
@@ -56,39 +59,46 @@ function userParameters() {
     console.log(numericalChose);
     console.log(upperChose);
     console.log(lowerChose);
-    
     ChosenArray();
 }
 
 
 function ChosenArray() {
-    var possibleChars = [];
-
     if (specialChose) {
-        possibleChars = possibleChars.concat(specialCase)
+        possibleChars = possibleChars.concat(specialCase);
     }
 
     if (upperChose) {
-        possibleChars = possibleChars.concat(upperCase)
+        possibleChars = possibleChars.concat(upperCase);
     }
     if (lowerChose) {
-        possibleChars = possibleChars.concat(lowerCase)
+        possibleChars = possibleChars.concat(lowerCase);
     }
     if (numericalChose) {
-        possibleChars = possibleChars.concat(numericalNumeral)
+        possibleChars = possibleChars.concat(numericalNumeral);
     }
     console.log(possibleChars);
-    return;
+    finalPassLoop();
 }
 
+function finalPassLoop() {
+    for (let i = 0; i < numChars; i++) {
+     finalPass = finalPass.concat(possibleChars[Math.floor(Math.random() * possibleChars.length)]);
+    }
+    console.log(numChars);
+    console.log(finalPass);
+    return finalPass.join ("");
+}
+
+
 // Assignmenmt code
-var generateBtn = document.querySelector("#generate")
+var generateBtn = document.querySelector("#generate");
 
 // write password
 function writePassword() {
     var password = generatePassword();
     var passwordText = document.querySelector("#password");
-    passwordText.value = password;
+    passwordText.value = finalPass;
 }
 
     // function OptionsArray ()
