@@ -1,7 +1,7 @@
 //  Create variables to hold the character options for Special, lowercase, uppercase and numeric character
 var upperCase = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
 var lowerCase = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
-var SpecialCase = ["+", "-", "&", "||", "!", "(", ")", "{", "}", "[", "]", "^", "~", "*", "?", ":", "'", '"'];
+var specialCase = ["+", "-", "&", "||", "!", "(", ")", "{", "}", "[", "]", "^", "~", "*", "?", ":", "'", '"'];
 var numericalNumeral = ["1", "2", "3", "4", "5", "6", "7", "8", "9"]
 
 // create an empty array that will hold the user selected characters
@@ -26,14 +26,7 @@ function PasswordFinder() {
     else {
         return null;
     }
-
-
-
-    // functions validateUserInput(chars) {
-    // if (chars < 8 || chars > 128) {
-    //      return null  
-    // }
-    // }
+}
 
 
     // after validation create variables for character selections
@@ -42,34 +35,42 @@ function PasswordFinder() {
         var numericalNums = confirm("Would you like numbers?");
         var lowerChars = confirm("Would you like lowercase characters?");
         var upperChars = confirm("Would you like uppercase characters?");
-    
 
-    // validate that at least one option was selected
 
-    if (!specialChars && !numericalNums && !lowerChars && !upperChars) {
-         alert ("You need to select at least one type of character");
-    return null();
+        // validate that at least one option was selected
+
+        if (!specialChars && !numericalNumeral && !lowerChars && !upperChars) {
+            alert("You need to select at least one type of character");
+            return null();
+        }
     }
-}
 
-// after validation is complete start pushiong the selected characters into possible chars array
 
-// if (specialChars)  {
-// possibleChars.concat(specialCharsArray)
-// }
+    if (specialCase) {
+       possibleChars = possibleChars.concat(specialCase)
+    }
 
-// if (numericalChars)  {
-// possibleChars.concat(numericalNumsArray)
-// }
+    if (upperCase) {
+        possibleChars = possibleChars.concat(upperCase)
+    }
+    if (lowerCase) {
+        possibleChars = possibleChars.concat(lowerCase)
+    }
+    if (numericalNumeral) {
+        possibleChars = possibleChars.concat(numericalNumeral)
+    }
+console.log(possibleChars);
+    // Assignmenmt code
+    var generateBtn = document.querySelector("#generate")
 
-// Assignmenmt code
-var generateBtn = document.querySelector("#generate")
+    // write password
+    function writePassword() {
+        var password = generatePassword();
+        var passwordText = document.querySelector("#password");
+        passwordText.value = password;
+    }
 
-// write password
-function writePassword() {
-    var password = generatePassword();
-    var passwordText = document.querySelector("#password");
-    passwordText.value = password;
-}
-
-generateBtn.addEventListener("click", writePassword);
+    function OptionsArray ()
+    // generateBtn.addEventListener("click", writePassword) {
+    //     console.log(password);
+    // }
