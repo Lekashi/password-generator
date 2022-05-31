@@ -3,6 +3,10 @@ var upperCase = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M'
 var lowerCase = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
 var specialCase = ["+", "-", "&", "|", "!", "(", ")", "{", "}", "[", "]", "^", "~", "*", "?", ":", "'", '"'];
 var numericalNumeral = ["1", "2", "3", "4", "5", "6", "7", "8", "9"]
+var specialChose;
+var numericalChose;
+var lowerChose;
+var upperChose;
 
 // create an empty array that will hold the user selected characters
 var OptionsArray = [];
@@ -10,9 +14,9 @@ var OptionsArray = [];
 // var possibleChars = [];
 var possibleChars = [];
 
-
 // on game start prompt for users numbers of character and hold in variable
 PasswordFinder();
+
 function PasswordFinder() {
     // var numChars = prompt("How many character ")
     var numChars = prompt("How many characters would you like? Between 8 and 128")
@@ -23,7 +27,7 @@ function PasswordFinder() {
         PasswordFinder();
         return null;
     }
-    else if (numChars > 8 && numChars < 128) {
+    else if (numChars >= 8 && numChars <= 128) {
         userParameters();
         return numChars;
     }
@@ -36,53 +40,56 @@ function PasswordFinder() {
 }
 
 
-    // after validation create variables for character selections
-    function userParameters() {
-        var specialChars = confirm("Would you like special characters?");
-        var numericalNums = confirm("Would you like numbers?");
-        var lowerChars = confirm("Would you like lowercase characters?");
-        var upperChars = confirm("Would you like uppercase characters?");
-
-
-        // validate that at least one option was selected
-
-        if (!specialChars && !numericalNumeral && !lowerChars && !upperChars) {
-            alert("You need to select at least one type of character");
-            return null();
-        }
+// after validation create variables for character selections
+function userParameters() {
+    specialChose = confirm("Would you like special characters?");
+    numericalChose = confirm("Would you like numbers?");
+    lowerChose = confirm("Would you like lowercase characters?");
+    upperChose = confirm("Would you like uppercase characters?");
+    // validate that at least one option was selected
+    if (!specialChose && !numericalChose && !lowerChose && !upperChose) {
+        alert("You need to select at least one type of character");
+        userParameters();
+        return null();
     }
-
+    console.log(specialChose);
+    console.log(numericalChose);
+    console.log(upperChose);
+    console.log(lowerChose);
+    
     ChosenArray();
+}
 
-function ChosenArray () {
+
+function ChosenArray() {
     var possibleChars = [];
 
-    if (specialCase) {
+    if (specialChose) {
         possibleChars = possibleChars.concat(specialCase)
     }
-    
-    if (upperCase) {
+
+    if (upperChose) {
         possibleChars = possibleChars.concat(upperCase)
     }
-    if (lowerCase) {
+    if (lowerChose) {
         possibleChars = possibleChars.concat(lowerCase)
     }
-    if (numericalNumeral) {
+    if (numericalChose) {
         possibleChars = possibleChars.concat(numericalNumeral)
     }
     console.log(possibleChars);
     return;
 }
 
-    // Assignmenmt code
-    var generateBtn = document.querySelector("#generate")
+// Assignmenmt code
+var generateBtn = document.querySelector("#generate")
 
-    // write password
-    function writePassword() {
-        var password = generatePassword();
-        var passwordText = document.querySelector("#password");
-        passwordText.value = password;
-    }
+// write password
+function writePassword() {
+    var password = generatePassword();
+    var passwordText = document.querySelector("#password");
+    passwordText.value = password;
+}
 
     // function OptionsArray ()
     // generateBtn.addEventListener("click", writePassword) {
