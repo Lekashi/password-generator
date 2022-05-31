@@ -1,7 +1,7 @@
 //  Create variables to hold the character options for Special, lowercase, uppercase and numeric character
 var upperCase = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
 var lowerCase = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
-var specialCase = ["+", "-", "&", "||", "!", "(", ")", "{", "}", "[", "]", "^", "~", "*", "?", ":", "'", '"'];
+var specialCase = ["+", "-", "&", "|", "!", "(", ")", "{", "}", "[", "]", "^", "~", "*", "?", ":", "'", '"'];
 var numericalNumeral = ["1", "2", "3", "4", "5", "6", "7", "8", "9"]
 
 // create an empty array that will hold the user selected characters
@@ -12,7 +12,7 @@ var possibleChars = [];
 
 
 // on game start prompt for users numbers of character and hold in variable
-
+PasswordFinder();
 function PasswordFinder() {
     // var numChars = prompt("How many character ")
     var numChars = prompt("How many characters would you like? Between 8 and 128")
@@ -20,10 +20,17 @@ function PasswordFinder() {
     // check the users input and confirm they put in a number between 8 and 128
     if (numChars < 8 || numChars > 128) {
         alert("Too many characters or not enough characters. please select a number between 8 and 128")
+        PasswordFinder();
         return null;
+    }
+    else if (numChars > 8 && numChars < 128) {
+        userParameters();
+        return numChars;
     }
     // write function that validates users input
     else {
+        alert("Wrong Syntax. Please enter a number.")
+        PasswordFinder();
         return null;
     }
 }
@@ -45,11 +52,15 @@ function PasswordFinder() {
         }
     }
 
+    ChosenArray();
+
+function ChosenArray () {
+    var possibleChars = [];
 
     if (specialCase) {
-       possibleChars = possibleChars.concat(specialCase)
+        possibleChars = possibleChars.concat(specialCase)
     }
-
+    
     if (upperCase) {
         possibleChars = possibleChars.concat(upperCase)
     }
@@ -59,7 +70,10 @@ function PasswordFinder() {
     if (numericalNumeral) {
         possibleChars = possibleChars.concat(numericalNumeral)
     }
-console.log(possibleChars);
+    console.log(possibleChars);
+    return;
+}
+
     // Assignmenmt code
     var generateBtn = document.querySelector("#generate")
 
@@ -70,7 +84,7 @@ console.log(possibleChars);
         passwordText.value = password;
     }
 
-    function OptionsArray ()
+    // function OptionsArray ()
     // generateBtn.addEventListener("click", writePassword) {
     //     console.log(password);
     // }
