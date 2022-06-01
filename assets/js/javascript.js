@@ -17,7 +17,7 @@ var OptionsArray = [];
 var possibleChars = [];
 
 // on game start prompt for users numbers of character and hold in variable
-PasswordFinder();
+
 
 function PasswordFinder() {
     // var numChars = prompt("How many character ")
@@ -64,6 +64,7 @@ function userParameters() {
 
 
 function ChosenArray() {
+    possibleChars = [];
     if (specialChose) {
         possibleChars = possibleChars.concat(specialCase);
     }
@@ -78,10 +79,13 @@ function ChosenArray() {
         possibleChars = possibleChars.concat(numericalNumeral);
     }
     console.log(possibleChars);
-    finalPassLoop();
+    var password = finalPassLoop();
+    var passwordText = document.querySelector("#password");
+    passwordText.value = password;
 }
 
 function finalPassLoop() {
+    finalPass = [];
     for (let i = 0; i < numChars; i++) {
      finalPass = finalPass.concat(possibleChars[Math.floor(Math.random() * possibleChars.length)]);
     }
@@ -101,7 +105,4 @@ function writePassword() {
     passwordText.value = finalPass;
 }
 
-    // function OptionsArray ()
-    // generateBtn.addEventListener("click", writePassword) {
-    //     console.log(password);
-    // }
+    generateBtn.addEventListener("click", PasswordFinder) 
