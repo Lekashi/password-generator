@@ -4,7 +4,7 @@
 This code is used to generate a competely random password. This program has the ability to specify if you want number, special characters, uppercase letters and lowercase letters. The user is also able to choose how many character are in the password between 8 and 128.
 
 ### Technology used:
-1\. Javacript
+1\. Javacript  
 2\. HTML  
 3\. CSS
 
@@ -16,4 +16,4 @@ This code is used to generate a competely random password. This program has the 
 
 ## Screenshot of the website
 
-![Screenshot of the website](./assets/images/Screenshot.png)
+![Screenshot of the website](./assets/imgs/Screenshot.png)
